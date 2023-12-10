@@ -1,4 +1,6 @@
-<img src="Results/logo.png" width="200">
+<p align="center">
+ <img src="Results/logo.png" width="200">
+</p>
 # voSINT: Video Reverse Search OSINT Tool
 
 ## Description
