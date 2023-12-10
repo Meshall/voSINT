@@ -1,0 +1,9 @@
+certifi==2023.7.22
+charset-normalizer==3.2.0
+google-search-results==2.4.2
+idna==3.4
+numpy==1.25.2
+opencv-python==4.8.0.76
+requests==2.31.0
+tqdm==4.66.1
+urllib3==2.0.4
