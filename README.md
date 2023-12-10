@@ -1,5 +1,5 @@
 <p align="center">
- <img src="Results/logo.png" width="200">
+ <img src="Results/logo.png" width="500">
 </p>
 # voSINT: Video Reverse Search OSINT Tool
 
