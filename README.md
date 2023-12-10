@@ -1,4 +1,4 @@
-![Logo](voSINT/Results/logo.png)
+![Logo](Results/logo.png)
 # voSINT: Video Reverse Search OSINT Tool
 
 ## Description
