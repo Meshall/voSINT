@@ -39,3 +39,5 @@ python voSINT.py <videos_dir>
 ```
 
 By creating and activating a virtual environment, you ensure that the installed packages and dependencies are isolated from your system's global Python environment, providing a clean and separate environment for your project.
+
+[![Video PoC](images/video_thumbnail.png)](https://veed.io/embed/b2451482-0643-492b-91c4-cc8d73dbe27a) 
