@@ -40,4 +40,16 @@ python voSINT.py <videos_dir>
 
 By creating and activating a virtual environment, you ensure that the installed packages and dependencies are isolated from your system's global Python environment, providing a clean and separate environment for your project.
 
-[![Video PoC](images/video_thumbnail.png)](https://cdn-user.veed.io/render/e875b179-4b52-4ab5-86c5-f18b7d2dd123.mp4)
+## API Key Configuration
+Before using voSINT, you need to obtain an API key from SerpApi.com. This key is essential for the tool to perform video reverse searches in Google and Yandex without dealing with CAPTCHA. Follow these steps to configure your API key:
+
+Visit SerpApi.com and sign up to receive an API key.
+
+Once you have your API key, open the config.ini file in the voSINT directory.
+
+Insert your API key in the designated section of config.ini.
+
+Ensure your API key is correctly saved in the configuration file to enable the full functionality of voSINT.
+
+
+[![Video PoC]
