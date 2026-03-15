@@ -1,55 +1,74 @@
-<p align="center">
- <img src="Results/logo.png" width="500">
-</p>
-# voSINT: Video Reverse Search OSINT Tool
+# voSINT v2
 
-## Description
-voSINT is an Open Source Intelligence (OSINT) tool designed for video reverse search. It enables users to trace the digital footprint of a video across the internet. By listing the results in descending order, voSINT reveals where a video first appeared and its subsequent occurrences online. This tool is invaluable for cybersecurity experts, digital forensics analysts, and anyone interested in the origin and spread of digital content.
+Token-free reverse-video OSINT workflow focused on **origin hunting** and **repost spread** analysis.
 
-Key Features:
-- Track video appearances online in descending order.
-- Generate approximate results, prioritizing data scope.
-- Beta version focused on user feedback and continuous improvement.
+## Highlights
+- No SerpApi key, no `config.ini` setup, no upload-to-host requirement.
+- Playwright provider adapters (default order): **Pinterest**, Google Lens, Bing Visual, Yandex, TinEye.
+- Multi-frame extraction with quality scoring and timeline-first ranking.
+- OCR pivots, transcript pivots (optional local dependencies), and Video DNA artifact.
+- Case-folder outputs: HTML/JSON/CSV + raw/normalized artifacts.
+- Commands: `scan`, `diff`, `report`.
 
-## Installation Guide
-Navigate to the directory where you want to create your project.
-
-### Setting up a Virtual Environment
-Run the following command to create a virtual environment (replace 'venv' with your desired environment name):
+## Install
 ```bash
-python3 -m venv venv
-```
-Activate the virtual environment:
-```bash
-source venv/bin/activate
-```
-Install the required packages:
-```bash
-pip install -r requirements.txt
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+python -m playwright install chromium
 ```
 
-## Usage Instructions
-For using the tool with a single video:
+## CLI
+### Single scan
 ```bash
-python voSINT.py <video_path>
-```
-For multiple videos in a directory:
-```bash
-python voSINT.py <videos_dir>
+vosint scan video.mp4
 ```
 
-By creating and activating a virtual environment, you ensure that the installed packages and dependencies are isolated from your system's global Python environment, providing a clean and separate environment for your project.
+### Batch scan
+```bash
+vosint scan ./videos --batch --mode deep
+```
 
-## API Key Configuration
-Before using voSINT, you need to obtain an API key from SerpApi.com. This key is essential for the tool to perform video reverse searches in Google and Yandex without dealing with CAPTCHA. Follow these steps to configure your API key:
+### Compare videos
+```bash
+vosint diff a.mp4 b.mp4
+```
 
-Visit SerpApi.com and sign up to receive an API key.
+### Re-open a case report
+```bash
+vosint report cases/case_YYYYMMDD_HHMMSS
+```
 
-Once you have your API key, open the config.ini file in the voSINT directory.
+## Modes
+- `fast`: few top frames, Pinterest + Google Lens + Bing.
+- `deep` (default): more frames, OCR+transcript, all default providers.
+- `stealth`: local-only extraction/pivots, no provider submission; emits manual query pack.
 
-Insert your API key in the designated section of config.ini.
+## Common flags
+```bash
+--mode fast|deep|stealth
+--providers pinterest,google_lens,bing_visual,yandex,tineye
+--max-frames 8
+--ocr
+--transcribe
+--json --csv --html
+--keep-frames
+--no-browser
+--headful
+```
 
-Ensure your API key is correctly saved in the configuration file to enable the full functionality of voSINT.
+## Output layout
+Each run writes:
+```
+cases/<case_id>/
+  input/
+  frames/
+  raw/
+  normalized/
+  report.html
+  report.json
+  timeline.csv
+```
 
-
-![](https://raw.githubusercontent.com/Meshall/voSINT/master/walkthrough.gif)
+## Privacy note
+Reverse-image providers receive submitted frames unless `--mode stealth` or `--no-browser` is used.
